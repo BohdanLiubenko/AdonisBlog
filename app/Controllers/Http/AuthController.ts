@@ -11,8 +11,6 @@ export default class AuthController {
       session.flash({ emailError: 'No user with such email' })
       return response.redirect().back()
     } else if (!(await Hash.verify(user.password, password))) {
-      console.log('bad')
-
       session.flash({ passwordError: 'Password not right' })
       return response.redirect().back()
     }
@@ -22,5 +20,14 @@ export default class AuthController {
     if (auth.isLoggedIn) {
       return response.redirect('/admin/panel')
     }
+  }
+
+  public async logout({ auth, response }) {
+    await auth.logout()
+    return response.redirect('/')
+  }
+
+  public async renderLogin({ auth, view, response }: HttpContextContract) {
+    return auth.isLoggedIn ? response.redirect('/admin/panel') : view.render('admin/login')
   }
 }

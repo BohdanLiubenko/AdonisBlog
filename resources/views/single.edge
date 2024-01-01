@@ -1,0 +1,78 @@
+@layout('main')
+@section('content')
+<div id="preloader">
+  <div id="loader" class="dots-fade">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<style>
+  .blog-page-image {
+    width: 100%;
+    height: 70vh;
+    /* Adjust the height for a larger image */
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+  }
+
+  .narrow-content {
+    max-width: 800px;
+    /* Adjust the max-width to your desired value */
+    margin: 0 auto;
+    /* Center the content within the max-width */
+  }
+
+  .leed {
+    text-align: justify;
+    word-wrap: break-word;
+    /* Optional: Justify the text for a cleaner look */
+  }
+</style>
+<div id="page" class="s-pagewrap ">
+  @!component('navbar')
+  <article id="content" class="s-content entry">
+    @if(post)
+    <div class="s-pageheader entry__header">
+      <div class="row">
+        <div class="column xl-12">
+
+          <h1 class="entry__title">
+            {{post.title}}
+          </h1> <!-- end entry__title -->
+
+          <div class="entry__meta">
+            <div class="entry__meta-date">
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="7.25" stroke="currentColor" stroke-width="1.5"></circle>
+                <path stroke="currentColor" stroke-width="1.5" d="M12 8V12L14 14"></path>
+              </svg>
+              {{post.createdAt}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s-pagecontent entry__content">
+
+      <div class="row entry__media">
+        <div class="column xl-12">
+          <figure class="featured-image">
+            <img class="blog-page-image" src="{{ post.image.url }}" alt="image">
+          </figure>
+        </div>
+      </div> <!-- end entry__media -->
+      <div class="row entry__primary width-narrower narrow-content">
+        <div class="column xl-12">
+          <p class="leed">
+            {{ post.content }}
+          </p>
+        </div>
+      </div>
+      @else
+      <p>Post not found</p>
+      @endif
+  </article>
+</div>
+@end

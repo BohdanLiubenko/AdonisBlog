@@ -1,0 +1,80 @@
+@layout('main')
+@section('content')
+<div id="preloader">
+  <div id="loader" class="dots-fade">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<div id="page" class="s-pagewrap ss-home">
+  @!component('navbar')
+  <section id="content" class="s-content">
+    
+    <section class="s-pageheader pageheader">
+      <div class="row">
+        <div class="column xl-12">
+          <h1 class="page-title">
+            <span class="page-title__small-type text-pretitle">My Blog</span>
+            Recent Writings
+          </h1>
+        </div>
+      </div>
+    </section>
+    @if(posts)
+    <section class="s-pagecontent pagecontent">
+
+      <div class="row">
+        <div class="column xl-12 grid-block">
+
+          <!-- <div class="grid-full">         -->
+          <div class="grid-full grid-list-items">
+            @each(post in posts)
+
+            <div class="grid-list-items__item blog-card">
+              <div class="blog-card__header">
+                {{-- <div class="blog-card__cat-links">
+                  <a href="blog.html">Sponsored</a>
+                </div> --}}
+                <img class="blog-page-image" src="{{ post.image.url }}" alt="image">
+                <h3 class="blog-card__title"><a href="{{`blog/${post.id}`}}">{{post.title}}</a></h3>
+              </div>
+              <div class="blog-card__text">
+                <p style="word-wrap: break-word;">
+                  {{ post.truncate_content}} </p>
+              </div>
+            </div> <!-- end blog-card -->
+            @end
+
+          </div> <!-- grid-list-items -->
+          <!-- </div>     -->
+
+        </div> <!-- end grid-block-->
+      </div> <!-- end row -->
+      <!-- pagination -->
+      <div class="row navigation pagination">
+        <div class="column xl-12">
+          <nav class="pgn">
+            <ul>
+              {{-- <li>
+                <a class="pgn__prev" href="#0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12.707 17.293L8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
+                  </svg>
+                </a>
+              </li> --}}
+              @each(anchor in posts.getUrlsForRange(1, posts.lastPage))
+              <li><a class="pgn__num {{(posts.currentPage === anchor.page ? 'current' : '')}}"
+                  href="{{anchor.url}}">{{anchor.page}}</a></li>
+              @end
+            </ul>
+          </nav>
+        </div> <!-- end column -->
+      </div> <!-- end pagination -->
+      @else
+      <h1>There is no posts now</h1>
+      @endif
+    </section>
+  </section>
+</div>
+@end

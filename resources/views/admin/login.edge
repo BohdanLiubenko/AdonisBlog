@@ -105,7 +105,8 @@
         @if (flashMessages.has('passwordError'))
         <p class="text-danger">{{flashMessages.get('passwordError')}}</p>
         @end
-
+        <input type="checkbox" id="rememberMe" name="rememberMe">
+        <label for="rememberMe">Remember Me</label>
         <input type="submit" name="subscribe" value="Login" class="btn btn--primary btn--small u-fullwidth">
         <div class="mc-status"></div>
       </form>

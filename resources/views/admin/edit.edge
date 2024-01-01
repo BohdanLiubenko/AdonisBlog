@@ -1,0 +1,53 @@
+@layout('main')
+@section('content')
+@!component('admin/sidenavbar')
+<div class="content">
+  <button type="button" class="btn btn--back btn--small" onclick="history.back()">Back</button>
+  <section id="content" class="s-content">
+    <form id="updatePostForm" action="{{ `/admin/panel/posts/${post.id}` }}" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="postTitle">Title
+        </label>
+        <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter post title" value="{{ post.title }}" required>
+      </div>
+      <div class="form-group">
+        <label for="postContent">Content</label>
+        <textarea class="form-control" id="postContent" name="content" rows="3" placeholder="Enter post content" required>{{ post.content }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="existingImage">Existing Image</label>
+        <img src="{{ post.image.url }}" alt="Existing Image" class="blog-page-image">
+      </div>
+
+      <div class="form-group">
+        <label for="image">New Image</label>
+        <input type="file" class="form-control-file" id="image" name="image" accept="image/*" multiple>
+      </div>
+
+      <button type="button" class="btn btn-primary" onclick="handleUpdate()">Update Post</button>
+    </form>
+  </section>
+</div>
+</div>
+<script>
+  async function handleUpdate() {
+    if (confirm('Are you sure you want to update this post?')) {
+      try {
+        const form = document.getElementById('updatePostForm');
+        const formData = new FormData(form);
+        await fetch(form.action, {
+          method: 'PUT',
+          body: formData,
+        }).then(res => {
+          if (res.status == 200) {
+            window.location.href = '/admin/panel/posts';
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+</script>
+@end

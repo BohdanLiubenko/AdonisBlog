@@ -19,40 +19,7 @@
 
     <!-- # site header 
         ================================================== -->
-    <header class="s-header">
-
-        <div class="row s-header__inner width-sixteen-col">
-
-            <div class="s-header__block">
-                <div class="s-header__logo">
-                    <a class="logo" href="">
-                        <img src="/images/logo.svg" alt="Homepage">
-                    </a>
-                </div>
-
-                <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
-            </div> <!-- end s-header__block -->
-
-            <nav class="s-header__nav">
-
-                <ul class="s-header__menu-links">
-                    {{-- <li><a href="#about">About</a></li> --}}
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul> <!-- s-header__menu-links -->
-
-                <div class="s-header__contact">
-                    <a href="contact.html" class="btn btn--primary s-header__contact-btn">Let's Work Together</a>
-                </div> <!-- s-header__contact -->
-
-            </nav> <!-- end s-header__nav -->
-
-        </div> <!-- end s-header__inner -->
-
-    </header> <!-- end s-header -->
-
-
+    @!component('navbar')
     <!-- # site main content
         ================================================== -->
     <section id="content" class="s-content">
@@ -233,7 +200,7 @@
                         <div class="grid-list-items list-items show-ctr">
                             <div class="grid-list-items__item list-items__item">
                                 <div class="grid-list-items__title list-items__item-header">
-                                    <h3 class="list-items__item-title">Digital Marketing</h3>
+                                    <h3 class="list-items__item-title">Backend Developing</h3>
                                 </div>
                                 <div class="grid-list-items__text list-items__item-text">
                                     <p>
@@ -248,7 +215,7 @@
                             </div> <!-- list-item -->
                             <div class="grid-list-items__item list-items__item">
                                 <div class="grid-list-items__title list-items__item-header">
-                                    <h3 class="list-items__item-title">Project Management</h3>
+                                    <h3 class="list-items__item-title">DB Managment</h3>
                                 </div>
                                 <div class="grid-list-items__text list-items__item-text">
                                     <p>
@@ -263,7 +230,7 @@
                             </div> <!-- list-expertise__item -->
                             <div class="grid-list-items__item list-items__item">
                                 <div class="grid-list-items__title list-items__item-header">
-                                    <h3 class="list-items__item-title">Content Marketing</h3>
+                                    <h3 class="list-items__item-title">DevOps</h3>
                                 </div>
                                 <div class="grid-list-items__text list-items__item-text">
                                     <p>
@@ -529,80 +496,22 @@
                 </div> <!-- end section-header -->
 
                 <div class="grid-full s-journal__content-main grid-list-items">
-
+                    @each(post in posts)
                     <div class="grid-list-items__item blog-card">
+                        <img class="blog-card__image" src="{{post.image.url}}" alt="image">
                         <div class="blog-card__header">
-                            <div class="blog-card__cat-links">
+                            {{-- <div class="blog-card__cat-links">
                                 <a href="https://www.dreamhost.com/r.cgi?287326">Sponsored</a>
-                            </div>
-                            <h3 class="blog-card__title"><a href="https://www.dreamhost.com/r.cgi?287326">Need Web
-                                    Hosting for Your Websites?</a></h3>
+                            </div> --}}
+                            <h3 class="blog-card__title"><a href="{{`blog/${post.id}`}}">{{post.title}}</a></h3>
                         </div>
                         <div class="blog-card__text">
-                            <p>
-                                Need hosting for your website? We would highly recommend <a
-                                    href="https://www.dreamhost.com/r.cgi?287326">DreamHost</a>.
-                                Enjoy 100% in-house support, guaranteed performance and uptime, 1-click installs, and a
-                                super-intuitive control
-                                panel to make managing your websites and projects easy. <a
-                                    href="https://www.dreamhost.com/r.cgi?287326">Sign up</a> now to get started.
+                            <p style="word-wrap: break-word">
+                                {{post.truncate_content}}
                             </p>
                         </div>
                     </div> <!-- end blog-card -->
-                    <div class="grid-list-items__item blog-card">
-                        <div class="blog-card__header">
-                            <div class="blog-card__cat-links">
-                                <a href="blog.html">Productivity</a>
-                            </div>
-                            <h3 class="blog-card__title"><a href="single.html">5 Marketing Productivity Apps for Your
-                                    Team</a></h3>
-                        </div>
-                        <div class="blog-card__text">
-                            <p>
-                                Rerum quam quos. Quibusdam quis autem voluptatibus earum vel ex error ea magni. Aut
-                                asperiores
-                                sit mollitia. Rem neque et voluptatem eos quia sed eligendi et. Eaque velit eligendi ut
-                                magnam. Cumque ducimus laborum doloribus facere maxime vel earum quidem enim suscipit.
-                            </p>
-                        </div>
-                    </div> <!-- end blog-card -->
-                    <div class="grid-list-items__item blog-card">
-                        <div class="blog-card__header">
-                            <div class="blog-card__cat-links">
-                                <a href="blog.html">SEO</a>
-                            </div>
-                            <h3 class="blog-card__title"><a href="single.html">7 SEO Factors to Consider for Better
-                                    Website Ranking</a></h3>
-                        </div>
-                        <div class="blog-card__text">
-                            <p>
-                                Quibusdam quis autem voluptatibus earum vel ex error ea magni. Rerum quam quos. Aut
-                                asperiores
-                                sit mollitia. Rem neque et voluptatem eos quia sed eligendi et. Eaque velit eligendi ut
-                                magnam. Cumque ducimus laborum doloribus facere maxime vel earum quidem enim suscipit.
-                            </p>
-                        </div>
-                    </div> <!-- end blog card -->
-                    <div class="grid-list-items__item blog-card">
-                        <div class="blog-card__header">
-                            <div class="blog-card__cat-links">
-                                <a href="blog.html">Productivity</a>
-                            </div>
-                            <h3 class="blog-card__title"><a href="single.html">5 Effective Web Design Principles</a>
-                            </h3>
-                        </div>
-                        <div class="blog-card__text">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum ullam et laborum
-                                aperiam.
-                                Dignissimos quae voluptatibus ullam esse sapiente fugiat, rerum labore cupiditate
-                                obcaecati
-                                dolore necessitatibus id magni rem officia dolor nam sit laudantium. Quo eaque eveniet
-                                quibusdam unde.
-                            </p>
-                        </div>
-                    </div> <!-- end blog-card -->
-
+                    @endeach
                 </div> <!-- end grid-list-items -->
 
             </div> <!-- end grid-block-->
@@ -616,7 +525,7 @@
     <footer class="s-footer">
         <div class="row s-footer__content">
             <div class="column xl-6 lg-6 md-12 s-footer__block s-footer__about">
-                <h3>About Monica</h3>
+                <h3>About Bohdan</h3>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas illum quasi facere libero,
                     fugiat laboriosam possimus reprehenderit eveniet vero voluptatum fugit ad quis veritatis suscipit
@@ -715,7 +624,7 @@
             </div>
             <div class="column xl-6 lg-12">
                 <p class="ss-copyright">
-                    <span>© Copyright Monica 2022</span>
+                    <span>© Copyright Bohdan 2022</span>
                     <span>Design by <a href="https://www.styleshout.com/">StyleShout</a> Distribution By <a
                             href="https://themewagon.com">ThemeWagon</a></span>
                 </p>
@@ -739,6 +648,4 @@
 
 <!-- Java Script
     ================================================== -->
-<script src="/js/plugins.js"></script>
-<script src="/js/main.js"></script>
 @end
