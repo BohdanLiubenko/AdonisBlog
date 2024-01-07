@@ -1,0 +1,45 @@
+@layout('main')
+@section('content')
+@!component('admin/sidenavbar')
+<div class="content">
+  <button type="button" class="btn btn--back btn--small" onclick="history.back()">Back</button>
+  <section id="content" class="s-content">
+    <form id="updateContentForm" action="{{ `/admin/panel/contents/${content.id}` }}">
+      <div class="form-group">
+        <label for="contentName">Name
+        </label>
+        <input type="text" class="form-control" id="contentName" name="name" placeholder="Enter contents name"
+          value="{{ content.name }}" required>
+      </div>
+      <div class="form-group">
+        <label for="contentContent">Content</label>
+        <textarea class="form-control" id="contentContent" name="content" rows="3" placeholder="Enter contents content"
+          required>{{ content.content }}</textarea>
+      </div>
+
+      <button type="button" class="btn btn-primary" onclick="handleUpdate()">Update Content</button>
+    </form>
+  </section>
+</div>
+</div>
+<script>
+  async function handleUpdate() {
+    if (confirm('Are you sure you want to update this post?')) {
+      try {
+        const form = document.getElementById('updateContentForm');
+        const formData = new FormData(form);
+        await fetch(form.action, {
+          method: 'PUT',
+          body: formData,
+        }).then(res => {
+          if (res.status == 200) {
+            window.location.href = '/admin/panel/contents';
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+</script>
+@end

@@ -24,6 +24,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3333:3333
+    env_file:
+      - .env
+    volumes:
+      - ./:/home/node/app
     networks:
       - net
     depends_on:

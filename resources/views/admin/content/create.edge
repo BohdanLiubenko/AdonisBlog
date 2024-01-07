@@ -1,0 +1,22 @@
+@layout('main')
+@section('content')
+@!component('admin/sidenavbar')
+<div class="content">
+  <button type="button" class="btn btn--back btn--small" onclick="history.back()">Back</button>
+  <section id="content" class="s-content">
+    <form action="/admin/panel/contents" method="post">
+      <div class="form-group">
+        <label for="postTitle">Name</label>
+        <input type="text" class="form-control" id="contentName" name="name" placeholder="Enter contents name" required>
+      </div>
+      <div class="form-group">
+        <label for="postContent">Content</label>
+        <textarea class="form-control" id="contentContent" name="content" rows="3" placeholder="Enter contents content"
+          required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Content</button>
+    </form>
+  </section>
+</div>
+</div>
+@end

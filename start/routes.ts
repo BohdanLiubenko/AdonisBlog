@@ -18,6 +18,16 @@ Route.group(() => {
       Route.put('/:id', 'PostsController.update')
       Route.delete('/:id', 'PostsController.delete')
     }).prefix('/posts')
+
+    Route.group(() => {
+      Route.on('/create').render('admin/content/create')
+      Route.get('/edit/:id', 'ContentsController.renderSingle')
+      Route.on('').render('admin/content/index')
+      Route.get('/table', 'ContentsController.renderTable')
+      Route.post('', 'ContentsController.create')
+      Route.delete('/:id', 'ContentsController.delete')
+      Route.put('/:id', 'ContentsController.update')
+    }).prefix('/contents')
   })
     .prefix('/panel')
     .middleware('auth')
